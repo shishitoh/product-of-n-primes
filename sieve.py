@@ -4,17 +4,15 @@ import math
 
 def sieve(n):
 	T = np.ones(n, dtype="bool")
+	T[0:2] = False
 	T[4::2] = False
 	for i in range(3, int(math.sqrt(n)), 2):
 		if T[i]:
 			T[i*i::2*i] = False
-	return np.nonzero(T)[0][2:]
+	return np.nonzero(T)[0]
 
 
 if __name__ == "__main__":
-	import time
+	import cProfile
 	n = eval(input("n = "))
-	start = time.time()
-	print(sieve(n))
-	print(time.time()-start)
-	input()
+	cProfile.run("sieve(n)")

@@ -3,7 +3,7 @@ def mytakewhile(L, f):
 	high = len(L)
 	while (high-low) > 1:
 		middle = (high+low)//2
-		if f(L[middle]):
+		if f(middle):
 			low = middle
 		else:
 			high = middle

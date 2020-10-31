@@ -25,10 +25,7 @@ def primes1(pf, n):
 
 
 if __name__ == "__main__":
-	import time
+	import cProfile
 	pf = eval(input("pf = "))
 	n = eval(input("n = "))
-	start = time.time()
-	print(primes1(pf, n))
-	print(time.time()-start)
-	input()
+	cProfile("primes1(pf, n)")
