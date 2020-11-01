@@ -8,19 +8,17 @@ def primes3(pf, n):
 	elif n <= 2**pf:
 		return []
 
-	P = sieve(n)
+	P = sieve(-(-n >> (pf-1))) # 小数点以下切り上げ
 
 	if pf == 1:
 		return P
 
 	PF = P.copy()
-	func1 = lambda x:(PF[0]*P[x] < n)
-	func2 = lambda p:(lambda x:(PF[x]*p < n))
+	func = lambda p:(lambda x:(PF[x]*p < n))
 	for _ in range(2, pf+1):
-		P = mytakewhile(P, func1)
 		T = np.zeros(n, dtype=np.bool)
 		for p in P:
-			T[mytakewhile(PF, func2(p)) * p] = True
+			T[mytakewhile(PF, func(p)) * p] = True
 		PF = np.nonzero(T)[0]
 
 	return PF

@@ -8,7 +8,7 @@ def primes4(pf, n):
 	elif n <= 2**pf:
 		return []
 
-	P = sieve(n)
+	P = sieve(-(-n >> (pf-1)))
 
 	if pf == 1:
 		return P
@@ -16,12 +16,12 @@ def primes4(pf, n):
 	PH  = [0] * (pf - 1)
 	sup = pow(n, 1/pf)
 	PL = []
-	func = lambda Pprod:(lambda x:(Pprod*P[x] < n))
+	func = lambda Pprod:(lambda x:(Pprod*P[x+index] < n))
 	while P[PH[0]] < sup:
 		index = PH[-1]
 		Pprod = np.prod(P[PH])
 		if Pprod * P[index] < n:
-			PL.append(mytakewhile(P, func(Pprod))[index:] * Pprod)
+			PL.append(mytakewhile(P[index:], func(Pprod)) * Pprod)
 			PH[-1] += 1
 		else:
 			for i in range(-2, -pf-1, -1):

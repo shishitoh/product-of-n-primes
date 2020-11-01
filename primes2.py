@@ -16,9 +16,10 @@ def primes2(pf, n):
 	powP = [P]
 
 	func = lambda p:(lambda x:(powP[p][x]*P[x] < n))
-	for p in range(pf-1):
+	for p in range(pf):
 		tmpP = mytakewhile(powP[p], func(p))
 		powP.append(tmpP * P[:len(tmpP)])
+		print(powP[-1])
 	del tmpP
 
 	T = np.zeros(n, dtype=np.uint8)
@@ -28,7 +29,7 @@ def primes2(pf, n):
 			T[p::p] += 1
 	del powP
 
-	return np.where(T == pf)
+	return np.where(T == pf)[0]
 
 
 if __name__ == "__main__":
@@ -36,3 +37,4 @@ if __name__ == "__main__":
 	pf = eval(input("pf = "))
 	n = eval(input("n = "))
 	cProfile.run("primes2(pf, n)")
+	print(primes2(pf, n))
