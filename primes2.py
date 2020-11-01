@@ -14,9 +14,10 @@ def primes2(pf, n):
 		return P
 
 	powP = [P]
-	for p in range(1, pf):
-		func = lambda x:(powP[p-1][x]*P[x] < n)
-		tmpP = mytakewhile(powP[p-1], func)
+
+	func = lambda p:(lambda x:(powP[p][x]*P[x] < n))
+	for p in range(pf-1):
+		tmpP = mytakewhile(powP[p], func(p))
 		powP.append(tmpP * P[:len(tmpP)])
 	del tmpP
 

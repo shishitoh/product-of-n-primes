@@ -28,4 +28,4 @@ if __name__ == "__main__":
 	import cProfile
 	pf = eval(input("pf = "))
 	n = eval(input("n = "))
-	cProfile("primes1(pf, n)")
+	cProfile.run("primes1(pf, n)")
