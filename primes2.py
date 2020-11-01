@@ -19,7 +19,6 @@ def primes2(pf, n):
 	for p in range(pf):
 		tmpP = mytakewhile(powP[p], func(p))
 		powP.append(tmpP * P[:len(tmpP)])
-		print(powP[-1])
 	del tmpP
 
 	T = np.zeros(n, dtype=np.uint8)
