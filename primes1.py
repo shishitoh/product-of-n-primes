@@ -1,4 +1,4 @@
-from mytakewhile import mytakewhile
+from binarysearch import *
 
 def primes1(pf, n):
 	if pf <= 0:
@@ -18,7 +18,7 @@ def primes1(pf, n):
 				break
 			else:
 				func = (lambda x:x <= i//2)
-				if all(i % k for k in mytakewhile(PF[j], func)):
+				if all(i % k for k in bitakewhile(PF[j], func)):
 					PF[j].append(i)
 					break
 	return PF[pf]

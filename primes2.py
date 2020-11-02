@@ -1,4 +1,4 @@
-from mytakewhile import mytakewhile
+from binarysearch import *
 from sieve import sieve
 import numpy as np
 
@@ -17,7 +17,7 @@ def primes2(pf, n):
 
 	func = lambda p:(lambda x:(powP[p][x]*P[x] < n))
 	for p in range(pf):
-		tmpP = mytakewhile(powP[p], func(p))
+		tmpP = bitakewhile(powP[p], func(p))
 		powP.append(tmpP * P[:len(tmpP)])
 	del tmpP
 

@@ -1,4 +1,4 @@
-from mytakewhile import mytakewhile
+from binarysearch import *
 from sieve import sieve
 import numpy as np
 
@@ -21,7 +21,7 @@ def primes4(pf, n):
 		index = PH[-1]
 		Pprod = np.prod(P[PH])
 		if Pprod * P[index] < n:
-			T[mytakewhile(P[index:], func(Pprod)) * Pprod] = True
+			T[bitakewhile(P[index:], func(Pprod)) * Pprod] = True
 			PH[-1] += 1
 		else:
 			for i in range(-2, -pf-1, -1):

@@ -1,4 +1,4 @@
-from mytakewhile import mytakewhile
+from binarysearch import *
 from sieve import sieve
 import numpy as np
 
@@ -14,11 +14,11 @@ def primes3(pf, n):
 		return P
 
 	PF = P.copy()
-	func = lambda p:(lambda x:(PF[x]*p < n))
-	for _ in range(2, pf+1):
+	func = lambda x:(PF[x]*p < -(-n >> (pf-i)))
+	for i in range(2, pf+1):
 		T = np.zeros(n, dtype=np.bool)
 		for p in P:
-			T[mytakewhile(PF, func(p)) * p] = True
+			T[bitakewhile(PF, func) * p] = True
 		PF = np.nonzero(T)[0].astype(np.uint64)
 
 	return PF
