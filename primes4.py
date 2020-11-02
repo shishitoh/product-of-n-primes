@@ -13,15 +13,15 @@ def primes4(pf, n):
 	if pf == 1:
 		return P
 
-	PH  = [0] * (pf - 1)
+	PH  = [0] * (pf-1)
 	sup = pow(n, 1/pf)
-	PL = []
+	T = np.zeros(n, dtype=np.bool)
 	func = lambda Pprod:(lambda x:(Pprod*P[x+index] < n))
 	while P[PH[0]] < sup:
 		index = PH[-1]
 		Pprod = np.prod(P[PH])
 		if Pprod * P[index] < n:
-			PL.append(mytakewhile(P[index:], func(Pprod)) * Pprod)
+			T[mytakewhile(P[index:], func(Pprod)) * Pprod] = True
 			PH[-1] += 1
 		else:
 			for i in range(-2, -pf-1, -1):
@@ -30,10 +30,7 @@ def primes4(pf, n):
 					break
 	del P
 
-	PF = np.concatenate(PL)
-	PF.sort()
-
-	return PF
+	return np.nonzero(T)[0].astype(np.uint64)
 
 
 if __name__ == "__main__":

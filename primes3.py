@@ -19,7 +19,7 @@ def primes3(pf, n):
 		T = np.zeros(n, dtype=np.bool)
 		for p in P:
 			T[mytakewhile(PF, func(p)) * p] = True
-		PF = np.nonzero(T)[0]
+		PF = np.nonzero(T)[0].astype(np.uint64)
 
 	return PF
 
