@@ -14,12 +14,14 @@ def primes3(pf, n):
 		return P
 
 	PF = P.copy()
-	func = lambda x:(PF[x]*p < -(-n >> (pf-i)))
+	func = lambda x: (PF[x]*p < -(-n >> (pf-i)))
 	for i in range(2, pf+1):
-		T = np.zeros(n, dtype=np.bool)
+		ip = 2**i
+		T = np.zeros(n-ip, dtype=np.bool)
 		for p in P:
-			T[bitakewhile(PF, func) * p] = True
-		PF = np.nonzero(T)[0].astype(np.uint64)
+			T[(bitakewhile(PF, func) * p) - ip] = True
+		PF = np.add(np.nonzero(T)[0].astype(np.uint64), np.uint64(ip))
+		del T
 
 	return PF
 
