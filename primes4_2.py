@@ -17,18 +17,21 @@ def primes4_2(pf, n):
 	PF = []
 	appendPF = PF.append
 	npprod = np.prod
-	func = lambda x: (Pprod*P[x+index] < n)
+	high = None
+	func = lambda x: (Pprod*P[x] < n)
 	sup = biS(P, (lambda x: (P[x] < pow(n, 1/pf))))
 	while PH[0] < sup:
 		index = PH[-1]
 		Pprod = npprod(P[PH])
 		if Pprod * P[index] < n:
-			appendPF(bitakewhile(P[index:], func) * Pprod)
+			high = biS(P, func, low=index-1, high=high)
+			appendPF(P[index:high] * Pprod)
 			PH[-1] += 1
 		else:
 			for i in range(-2, -pf-1, -1):
 				if PH[i] != index:
 					PH[i:] = [PH[i] + 1] * (-i)
+					high = None
 					break
 	del P
 

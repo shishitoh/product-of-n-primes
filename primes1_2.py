@@ -14,6 +14,7 @@ def primes1_2(pf, n):
 	PF[1] = [2, 3, 5]
 	PF[2] = [4]
 
+	func = lambda x: (PF[j][x] <= i//2)
 	for i in range(6, n):
 		primecount = 0
 		divi = i
@@ -23,13 +24,11 @@ def primes1_2(pf, n):
 				divi //= p
 		if primecount:
 			for j in range(0, pf+1-primecount):
-				func = lambda x:(PF[j][x] <= i//2)
 				if divi in bitakewhile(PF[j], func):
 					PF[j+primecount].append(i)
 					break
 		else:
 			for j in range(1, pf+1):
-				func = lambda x:(PF[j][x] <= i//2)
 				if all(i % k for k in bitakewhile(PF[j], func)):
 					PF[j].append(i)
 					break
