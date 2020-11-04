@@ -8,7 +8,7 @@ def primes3_2(pf, n):
 	elif n <= 2**pf:
 		return []
 
-	P = sieve(-(-n >> (pf-1))) # 小数点以下切り上げ
+	P = sieve(-(-n >> (pf-1))) # nを2**(pf-1)で割って小数点以下切り上げ
 
 	if pf == 1:
 		return P
@@ -21,11 +21,12 @@ def primes3_2(pf, n):
 	for j, p in enumerate(bitakewhile(P, func1)):
 		appendPF(bitakewhile(P[j:], func2) * p)
 
-	func1 = lambda x: (PF[x][0]*P[x] < -(-n >> (pf-i)))
-	func2 = lambda x: (PF[j][x]*p < -(-n >> (pf-i)))
-	func3 = lambda x: (PF[x][0]*p < -(-n >> (pf-i)))
-	func4 = lambda x: (S[x]*p < -(-n >> (pf-i)))
+	func1 = lambda x: (PF[x][0]*P[x] < sup)
+	func2 = lambda x: (PF[j][x]*p < sup)
+	func3 = lambda x: (PF[x][0]*p < sup)
+	func4 = lambda x: (S[x]*p < sup)
 	for i in range(3, pf+1):
+		sup = -(-n >> (pf-i))
 		tophigh = biS(P, func1, high=len(PF))
 		for j, p in enumerate(P[:tophigh]):
 			PF[j] = [bitakewhile(PF[j], func2) * p]
@@ -35,14 +36,12 @@ def primes3_2(pf, n):
 			PF[j] = np.concatenate(PF[j])
 			PF[j].sort()
 		PF = PF[:tophigh]
-
+	del P
 
 	PF = np.concatenate(PF)
 	PF.sort()
 
 	return PF
-
-
 
 
 if __name__ == "__main__":
