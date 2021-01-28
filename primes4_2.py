@@ -18,7 +18,7 @@ def primes4_2(pf, n):
     PF = []
     appendPF = PF.append
     npprod = np.prod
-    high = None
+    high = len(P)
     func = lambda x: (Pprod*P[x] < n)
     while True:
         index = PH[-1]

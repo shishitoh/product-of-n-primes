@@ -19,7 +19,7 @@ def primes3_2(pf, n):
 
     func1 = lambda x: (P[x]**2 < -(-n >> (pf-2)))
     func2 = lambda x: (P[x]*p < -(-n >> (pf-2)))
-    high = None
+    high = len(P)
     for j, p in enumerate(binary_takewhile(P, func1)):
         high = upper_bound(j, high, func2)
         appendPF(P[j:high] * p)
@@ -28,11 +28,11 @@ def primes3_2(pf, n):
     func2 = lambda x: (PF[j][x]*p < sup)
     func3 = lambda x: (PF[x][0]*p < sup)
     func4 = lambda x: (S[x]*p < sup)
-    high1 = None
+    high1 = len(P)
     for i in range(3, pf+1):
         sup = -(-n >> (pf-i))
         high1 = upper_bound(0, high1, func1)
-        high3 = None
+        high3 = len(PF)
         for j, p in enumerate(P[:high1]):
             PF[j] = [binary_takewhile(PF[j], func2) * p]
             high3 = upper_bound(j+1, high3, func3)
