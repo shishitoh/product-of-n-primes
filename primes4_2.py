@@ -31,7 +31,7 @@ def primes4_2(pf, n):
             for i in range(-2, -pf, -1):
                 if PH[i] != index:
                     PH[i:] = [PH[i] + 1] * (-i)
-                    high = None
+                    high = len(P)
                     break
             else:
                 break
